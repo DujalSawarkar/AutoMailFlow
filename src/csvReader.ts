@@ -19,6 +19,7 @@ export const extractEmailsFromCSV = async (
       })
       .on("end", () => {
         console.log(`Extracted ${emails.length} emails from CSV`);
+        console.log(emails.slice(0, 5));
         resolve(emails);
       })
       .on("error", (error) => {
