@@ -11,8 +11,8 @@ let hrContacts: string[] = [];
 // Configure nodemailer with SMTP credentials
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
-  // port: Number(process.env.SMTP_PORT),
-  // secure: false,
+  port: Number(process.env.SMTP_PORT),
+  secure: false,
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
@@ -39,23 +39,23 @@ const transporter = nodemailer.createTransport({
 
 //sample object
 
-const mailOptions = {
-  from: `"Your Name" <${process.env.SMTP_USER}>`, // sender address
-  to: "dujalsawar5@gmail.com", // receiver address
-  subject: "Test Email from Nodemailer", // Subject line
-  text: "Hello Dujal, this is a test email sent using Nodemailer!", // plain text body
-};
+// const mailOptions = {
+//   from: `"Your Name" <${process.env.SMTP_USER}>`, // sender address
+//   to: "dujalsawar5@gmail.com", // receiver address
+//   subject: "Test Email from Nodemailer", // Subject line
+//   text: "Hello Dujal, this is a test email sent using Nodemailer!", // plain text body
+// };
 
 //for 1 mail
-const sendonemail = () => {
-  // console.log(transporter);
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return console.log(`Error: ${error}`);
-    }
-    console.log(`Email sent: ${info.response}`);
-  });
-};
+// const sendonemail = () => {
+//   // console.log(transporter);
+//   transporter.sendMail(mailOptions, (error, info) => {
+//     if (error) {
+//       return console.log(`Error: ${error}`);
+//     }
+//     console.log(`Email sent: ${info.response}`);
+//   });
+// };
 
 // const sendEmailsInBatches = () => {
 //   const emailsToSend = hrContacts.slice(emailIndex, emailIndex + 4); // Send 4 emails at a time
@@ -87,5 +87,5 @@ export const initializeEmailSending = async () => {
   hrContacts = await extractEmailsFromCSV("./Emails.csv"); // Updated to CSV file path
   console.log(`${hrContacts.length} emails loaded from the CSV`);
   // scheduleEmailSending();
-  sendonemail();
+  // sendonemail();
 };
